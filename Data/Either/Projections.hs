@@ -7,14 +7,34 @@
 -- | Either Projections, inspired by
 --   <http://www.scala-lang.org/api/rc2/scala/Either.html Scala's Either>.
 --
+-- Example:
+--
+-- >>> let process = (+) 100 . (4 *)
+-- >>> let foo = fmap (10 *) . rightProjection
+--
+-- >>> let ok = Right 10 :: Either String Int
+-- >>> let fail = Left "wrong input" :: Either String Int
+--
+-- >>> foo ok
+-- RightProjection 140
+--
+-- >>> foo fail
+-- RightNothing "wrong input"
+--
+-- >>> toMaybe $ foo fail
+-- Nothing
+--
+-- >>> toMaybe $ foo ok
+-- Just 140
+--
+-- >>> toEither $ foo fail
+-- Left "wrong input"
+--
+-- >>> mergeEither . toEither . fmap show $ rightProjection ok
+-- "10"
+
 
 {-# OPTIONS_HADDOCK show-extensions #-}
-
-{-# LANGUAGE MultiParamTypeClasses
-           , FunctionalDependencies
-           , TypeSynonymInstances
-           , FlexibleInstances
-       #-}
 
 module Data.Either.Projections (
 
@@ -33,6 +53,9 @@ module Data.Either.Projections (
 
 ) where
 
+import Data.Typeable
+
+
 
 -- | A projection of 'Either'.
 class EitherProjection proj left right side | proj -> left
@@ -47,12 +70,12 @@ type LeftProjection l r = LeftProjection' r l
 
 -- | 'Left' projection with type arguments flipped.
 -- | Allows to define instances of 'Functor', etc.
-data LeftProjection' r l = LeftProjection l
-                         | LeftNothing r
+data LeftProjection' r l = LeftProjection l | LeftNothing r
+    deriving (Eq, Ord, Read, Show, Typeable)
 
 -- | 'Right' projection.
-data RightProjection l r = RightProjection r
-                         | RightNothing l
+data RightProjection l r = RightProjection r | RightNothing l
+    deriving (Eq, Ord, Read, Show, Typeable)
 
 -----------------------------------------------------------------------------
 

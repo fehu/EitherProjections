@@ -4,6 +4,8 @@
 name:                EitherProjections
 version:             0.1.0.0
 synopsis:            Either Projections, inspired by Scala.
+description:         Permits to handle each side of 'Either' separately.
+
 homepage:            https://github.com/fehu/EitherProjections
 license:             MIT
 license-file:        LICENSE
@@ -13,20 +15,23 @@ maintainer:          kdn.kovalev@gmail.com
 
 stability:           provisional
 bug-reports:         https://github.com/fehu/EitherProjections/issues
-package-url:         https://github.com/fehu/EitherProjections.git
-tested-with:         GHC 7.10.3
+tested-with:         GHC == 7.10.3
 
 category:            Development
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
 
+source-repository head
+    type: git
+    location: https://github.com/fehu/EitherProjections.git
+
 library
   exposed-modules:     Data.Either.Projections
   build-depends:       base >=4.8 && <4.9
 
   default-language:    Haskell2010
-  extensions:          MultiParamTypeClasses
+  default-extensions:  MultiParamTypeClasses
                        FunctionalDependencies
                        TypeSynonymInstances
                        FlexibleInstances
