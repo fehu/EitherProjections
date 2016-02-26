@@ -49,6 +49,8 @@ module Data.Either.Projections (
 
 -- * misc
 
+, mapLeft, mapRight
+
 , mergeEither
 
 ) where
@@ -88,6 +90,16 @@ leftProjection x = case x of Left  l -> LeftProjection l
 rightProjection  :: Either l r -> RightProjection l r
 rightProjection x = case x of Right r -> RightProjection r
                               Left  l -> RightNothing l
+
+-----------------------------------------------------------------------------
+
+mapLeft :: (l -> t) ->  Either l r -> Either t r
+mapLeft f (Left l)  = Left (f l)
+mapLeft _ (Right r) = Right r
+
+mapRight :: (r -> t) ->  Either l r -> Either l t
+mapRight f (Right r) = Right (f r)
+mapRight _ (Left l)  = Left l
 
 -----------------------------------------------------------------------------
 
