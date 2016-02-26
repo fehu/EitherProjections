@@ -5,6 +5,8 @@ name:                EitherProjections
 version:             0.1.0.0
 synopsis:            Either Projections, inspired by Scala.
 description:         Permits to handle each side of 'Either' separately.
+                     Provides separate ‘Functor’ interfaces for both sides,
+                     recombining the result.
 
 homepage:            https://github.com/fehu/EitherProjections
 license:             MIT
