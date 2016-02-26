@@ -2,6 +2,7 @@
 --
 -- Module      :  Data.Either.Projections
 -- License     :  MIT
+-- Portability :  GHC
 --
 -- | Either Projections, inspired by
 --   <http://www.scala-lang.org/api/rc2/scala/Either.html Scala's Either>.

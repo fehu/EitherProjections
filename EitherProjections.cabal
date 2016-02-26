@@ -8,7 +8,14 @@ homepage:            https://github.com/fehu/EitherProjections
 license:             MIT
 license-file:        LICENSE
 author:              Dmitry K.
+copyright:           Dmitry K. (2016)
 maintainer:          kdn.kovalev@gmail.com
+
+stability:           provisional
+bug-reports:         https://github.com/fehu/EitherProjections/issues
+package-url:         https://github.com/fehu/EitherProjections.git
+tested-with:         GHC 7.10.3
+
 category:            Development
 build-type:          Simple
 extra-source-files:  README.md
@@ -17,4 +24,9 @@ cabal-version:       >=1.10
 library
   exposed-modules:     Data.Either.Projections
   build-depends:       base >=4.8 && <4.9
+
   default-language:    Haskell2010
+  extensions:          MultiParamTypeClasses
+                       FunctionalDependencies
+                       TypeSynonymInstances
+                       FlexibleInstances
