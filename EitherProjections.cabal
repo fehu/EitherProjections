@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                EitherProjections
-version:             0.1.1.0
+version:             0.1.1.1
 synopsis:            Either Projections, inspired by Scala.
 description:         Permits to handle each side of 'Either' separately.
                      Provides separate ‘Functor’ interfaces for both sides,

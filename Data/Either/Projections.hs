@@ -40,7 +40,7 @@ module Data.Either.Projections (
 
 -- * Projections.
 
-  EitherProjection (toEither, toMaybe)
+  EitherProjection (toEither, toMaybe, flatMap)
 
 , LeftProjection, LeftProjection'
 , RightProjection
@@ -65,6 +65,9 @@ class EitherProjection proj left right side | proj -> left
                                             , proj -> side
     where toEither :: proj -> Either left right
           toMaybe  :: proj -> Maybe side
+          flatMap  :: (side -> Either left right) -> proj -> Either left right
+
+          flatMap f p = maybe (toEither p) f (toMaybe p)
 
 
 -- | 'Left' projection.
@@ -125,6 +128,8 @@ instance Functor (LeftProjection' r) where
 instance Functor (RightProjection l) where
     fmap f (RightProjection r) = RightProjection (f r)
     fmap _ (RightNothing    l)  = RightNothing l
+
+
 
 
 -----------------------------------------------------------------------------
